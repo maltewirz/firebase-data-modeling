@@ -4,13 +4,20 @@ import { db } from "./config";
 const userId = 'Dostojewski';
 
 // 1. Embedded, all data contained on single document, One-to-few
+// Example
+// authors collection
+// * name: ayn rand
+// * unitsSold :100
 const authorWithAccount = db.collection('authors').doc(userId)
 
 // 2. Shared Document ID
-// Example: Author has field: units sold. this sensitive information has to be
-// outsoured to different collection `accounts`
-// Field `AccountId` has string with accountId, Account has the accountId as
-// docId
+// Example
+// authors collection
+// * docId: ayn-rand
+//
+// accounts collection
+// * docId: ayn-rand
+// * unitsSold: 100
 const author = db.collection('authors').doc(userId)
 const account = db.collection('account').doc(userId)
 

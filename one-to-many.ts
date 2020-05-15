@@ -14,12 +14,29 @@ import { db } from "./config";
 const authorId = 'dostojewski';
 
 // 4. Embedded One-to-Many
+// Example
+// authors collection
+// * docId: dr-seuss
+// * books array
+// * * map : title, published etc
 const authorWithBooks = db.collection('authors').doc('authorId')
 
 // 5. Subcollection
+// Example
+// authors collection
+// * name: dr-seuss
+// 
+// books collection
+// * docId: lorax
 const books = db.collection('authors').doc(authorId).collection('books');
 
 // 6. Root Collection, requires index
+// Example
+// authors collection
+// * docId: dr-seuss
+// 
+// books collection
+// * author: dr-seuss
 const booksFrom1971 = db.collection('books')
         .where('author', '==', authorId)
         .where('published', '>', 1971);
